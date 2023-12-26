@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Topbar from "../components/Topbar.astro";
+import Volunteer from "../components/shifts/Volunteer.astro";
+import { format } from "date-fns";
+import { it } from "date-fns/locale";
+const currentShift = new Date("2024-01-02");
+const formattedCurrentShift = format(currentShift, "dd MMM", { locale: it });
+
+const volunteers = [
+  {
+    name: "Andrea C.",
+    you: true,
+    present: false,
+  },
+  {
+    name: "Maurizio F.",
+    you: false,
+    present: true,
+  },
+  {
+    name: "Marco T.",
+    you: false,
+    present: true,
+  },
+  {
+    name: "Stefano C.",
+    you: false,
+    present: true,
+  },
+  {
+    name: "Marco L.",
+    you: false,
+    present: true,
+  },
+  {
+    name: "Matteo M.",
+    you: false,
+    present: true,
+  },
+];
+---
+
+<BaseLayout title="Turni volontari">
+  <Topbar />
+  <h1 class="text-center tracking-widest uppercase my-4">Serale - Martedì</h1>
+  <nav class="flex justify-between items-center my-3">
+    <button class="p-3">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+      </svg>
+    </button>
+    <div class="uppercase text-3xl font-black">{formattedCurrentShift}</div>
+    <button class="p-3">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+      </svg>
+    </button>
+  </nav>
+  <h2 class="text-center text-7xl font-black text-green-600 my-8">10</h2>
+  <section class="rounded-full">
+    {
+      volunteers.map((v) => (
+        <Volunteer name={v.name} isYou={v.you} isPresent={v.present} />
+      ))
+    }
+  </section>
+</BaseLayout>
