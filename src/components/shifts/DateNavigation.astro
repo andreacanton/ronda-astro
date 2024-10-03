@@ -1,0 +1,49 @@
+---
+import { addDays, format } from "date-fns";
+import { it } from "date-fns/locale";
+const { type, weekday, date } = Astro.params;
+
+const currentShift = new Date(date!);
+const formattedCurrentShift = format(currentShift, "dd MMM", { locale: it });
+
+const prevDate = addDays(currentShift, -7);
+const nextDate = addDays(currentShift, 7);
+const baseUrl = `/shift/${type}/${weekday}/`;
+
+const prevUrl = baseUrl + format(prevDate, "yyyy-MM-dd");
+const nextUrl = baseUrl + format(nextDate, "yyyy-MM-dd");
+---
+
+<nav class="flex justify-between items-center my-3">
+  <a href={prevUrl} class="p-3">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+    </svg>
+  </a>
+  <div class="uppercase text-3xl font-black">{formattedCurrentShift}</div>
+  <a href={nextUrl} class="p-3">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+    </svg>
+  </a>
+</nav>

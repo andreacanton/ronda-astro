@@ -1,8 +1,16 @@
 ---
-const { name, isYou, isPresent} = Astro.props;
+const { name, isYou, isPresent } = Astro.props;
 ---
 
 <label class="p-4 flex justify-between">
-  <span class:list={ ['block',{'font-bold': isYou}] }>{name} {isYou && <span>(Tu)</span>}</span>
-  <input type="checkbox" name="voluteer_1" value="1" checked={isPresent} class="form-checkbox" />
+  <span class:list={["block", { "font-bold": isYou }]}
+    >{name} {isYou && <span>(Tu)</span>}</span
+  >
+  <input
+    type="checkbox"
+    name="voluteer_1"
+    value="1"
+    checked={isPresent}
+    class="rounded"
+  />
 </label>

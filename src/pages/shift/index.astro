@@ -1,7 +1,7 @@
 ---
 import { format } from "date-fns";
-import { getNextShiftDay } from "../services/shift.service";
-import MainLayout from "../layouts/MainLayout.astro";
+import { getNextShiftDay } from "../../services/shift.service";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 const nextShiftDate = getNextShiftDay("tue");
 const redirectDate = format(nextShiftDate, "yyyy-MM-dd");

@@ -1,0 +1,15 @@
+---
+import Bottomnav from "../components/Bottomnav.astro";
+import Topbar from "../components/Topbar.astro";
+import BaseLayout from "./BaseLayout.astro";
+const paths = Astro.url.pathname.split("/");
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <Topbar />
+  <main class="grow overflow-y-auto">
+    <slot />
+  </main>
+  <Bottomnav section={paths[1]} />
+</BaseLayout>
